@@ -50,4 +50,16 @@ public class IngredientResource {
         ingredientListRepository.persist(ingredientList);
         return "Saved!!";
     }
+
+    @POST
+    @Path("/multiple")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public String saveMultiple(@RequestBody List<IngredientList> ingredientLists){
+        for(IngredientList ing : ingredientLists){
+            ingredientListRepository.persist(ing);
+        }
+        return "Saved!!";
+    }
 }
